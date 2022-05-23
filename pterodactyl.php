@@ -818,6 +818,26 @@ class Pterodactyl extends Module
     {
         $this->view = new View('tab_client_actions', 'default');
 
+        Loader::loadModels($this, ['ModuleClientMeta']);
+        $row = $this->getModuleRow();
+
+        // Load the view into this object, so helpers can be automatically added to the view
+        $this->view->base_uri = $this->base_uri;
+        $this->view->setDefaultView('components' . DS . 'modules' . DS . 'pterodactyl' . DS);
+
+        // Load the helpers required for this view
+        Loader::loadHelpers($this, ['Form', 'Html']);
+
+        // Get username and password for the account
+        $module = $this->getModule();
+        $username = $this->ModuleClientMeta->get($service->client_id, 'pterodactyl_username', $module->id);
+        $password = $this->ModuleClientMeta->get($service->client_id, 'pterodactyl_password', $module->id);
+
+        // Set view data
+        $this->view->set('module_row', $row);
+        $this->view->set('username', $username ? $username->value : '');
+        $this->view->set('password', $password ? $password->value : '');
+
         return $this->actionsTab($package, $service, true, $get, $post);
     }
     /**

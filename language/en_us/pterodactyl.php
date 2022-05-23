@@ -97,7 +97,7 @@ $lang['Pterodactyl.tab_actions.status_stopping'] = 'Stopping';
 
 
 // Client Actions Tab
-$lang['Pterodactyl.tab_client_actions.heading_actions'] = 'Actions';
+$lang['Pterodactyl.tab_client_actions.heading_actions'] = 'Quick Actions';
 $lang['Pterodactyl.tab_client_actions.server_status'] = 'Server Status';
 
 $lang['Pterodactyl.tab_client_actions.status_running'] = 'Online';
